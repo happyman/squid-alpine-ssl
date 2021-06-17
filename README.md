@@ -1,3 +1,30 @@
+# Forked project
+
+Mainly add jesred redirect_program (borrow from ubuntu package source)
+so build env required, add bash, and then the image becomes 168MB.
+
+other changes, see docker-compose.yaml
+
+3128 -> 3129
+4128 -> 4129
+
+Usage:
+1. cllne this project, and build image
+```
+docker build -t happyman/squid-alpine-ssl:v42
+```
+2. check docker-compose.yaml and run
+```
+docker-compose up -d
+```
+3. modify conf/jesred.rules and reload squid
+```
+docker exec -it sslbump kill -1 1
+or 
+docker exec -it sslbump bash
+```
+
+
 # Squid on Alpine with SSLBump ![Logo](squid_logo.png)[![Build Status](https://travis-ci.org/alatas/squid-alpine-ssl.svg?branch=master)](https://travis-ci.org/alatas/squid-alpine-ssl)
 
 This is one of the side projects that I configure and publish to a Docker image. Fundamentally, I configure Squid on Alpine Linux and add SSLBump feature to Squid in this image.

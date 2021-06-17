@@ -1,0 +1,67 @@
+# jesred example redirector rules
+# this rules file does NOT redirect any URLs.
+# after uncommenting/adding rules you need to either reload squid or send jesred a HUP signal.
+
+# Syntax: 
+# 
+#	regex[i] pattern replacement
+#
+#	abort .filename_extension
+
+# jesred uses a linear list of redirect rules and terminates on first match, 
+# so the order of rules is important!
+
+# abort string:
+#
+# If jesred enconters the specified string at the end
+# of the passed URL, it immediately returns and echo's back a newline (i.e.
+# no rewrite) - so this speeds up the lookup process a lot for commonly 
+# accepted URLs.
+
+# examples:
+# abort	.html
+# abort	.jpg
+# abort	.html
+# abort	.shtml
+# abort	.java
+# abort	.jar
+# abort	.htm
+
+# regex RE [RURL]
+# regexi RE [RURL]
+#
+# regex  ... indicates, that the following RE is case-sensitive
+# regexi ... indicates, that the following RE is case-insensitive
+# RE     ... is the regular expression, which has to match the passed URL to get
+#            rewritten with the following RURL (see regex(7)).
+# RURL   ... if RE matches the passed URL, jesred returns RURL
+#
+#
+# To indicate that a client-side redirect should be performed with
+# the new URL prefixing the RURL with "301:" (moved permanently) 
+# or 302: (moved temporarily).
+#
+# Note: Squid 3.4 and 3.5 seem to ALWAYS redirect, no matter whether
+# jesred indicates rewriting or redirection.
+
+# If RURL is omitted, all URLs which match RE are NOT rewritten.
+# So the following two rules prevent jesred from rewriting matched URLs, but
+# with the 2nd rule jesred does NOT need to store the RURL (thus consuming
+# less memory) and does NOT need to do all the pattern replacements (faster)...
+# 
+# 	regex ^http://(.*)/ads/minizoff(.*)	http://\1/ads/minizoff\2
+#
+#	NO_REDIRECT rule
+# 	regex ^http://(.*)/ads/minizoff(.*)
+# NOTE: '.' in RE stands for "a single character", so if you want to be sure to match only dots 
+#       escape the special meaning with a prefixed '\'
+# regex	^http://199.78.52.10/~web_ani/.*\.gif	http://141.44.30.2/images/dot.gif
+# abort	.gif
+# regexi ^http://ad.doubleclick.net/ad/.*	http://141.44.30.2/images/dot.gif
+# regex	^http://ad.preferences.com/image.*	http://141.44.30.2/images/dot.gif
+# regex	^http://ads[0-9][0-9].focalink.com/SmartBanner/nph-graphic.*	http://141.44.30.2/images/dot.gif
+# regex	^http://adserver.developer.com/cgi-bin/accipiter/adserver.exe.*	http://141.44.30.2/images/dot.gif
+# regex	^http://tracker.clicktrade.com/Tracker.*	http://141.44.30.2/images/dot.gif
+# regex	^http://adforce.imgis.com/?adserv.*	http://141.44.30.2/images/dot.gif
+# regex	^http://195.90.252.40/banner.*	http://141.44.30.2/images/dot.gif
+# regex	^http://www.artuframe.com/partners/affiliates/banners.*	http://141.44.30.2/images/dot.gif

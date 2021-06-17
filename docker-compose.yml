@@ -1,18 +1,22 @@
 version: "3"
 services:
   squid-alpine-ssl:
-    image: alatas/squid-alpine-ssl:latest
+    image: happyman/squid-alpine-ssl:v42
     environment:
       - CN=squid.local
       - O=squid
       - OU=squid
       - C=US
     ports:
-      - "3128:3128"
-      - "4128:4128"
+      - "3129:3128"
+      - "4129:4128"
     volumes:
       - ./log:/var/log/
       - ./conf/squid.conf:/etc/squid/squid.conf
+      - ./conf/jesred.conf:/etc/squid/jesred.conf
+      - ./conf/jesred.rules:/etc/squid/jesred.rules
+      - ./conf/jesred.acl:/etc/squid/jesred.acl
       - ./cache:/var/cache
       - ./cert:/etc/squid-cert
     restart: always
+    container_name: sslbump
