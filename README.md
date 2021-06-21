@@ -5,13 +5,15 @@ so build env required, add bash, and then the image becomes 168MB.
 
 other changes, see docker-compose.yaml
 
+```
 3128 -> 3129
 4128 -> 4129
+```
 
 Usage:
 1. cllne this project, and build image
 ```
-docker build -t happyman/squid-alpine-ssl:v42
+docker build -t happyman/squid-alpine-ssl:v43
 ```
 2. check docker-compose.yaml and run
 ```

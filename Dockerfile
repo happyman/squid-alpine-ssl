@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM alpine:3.10
 
 LABEL maintainer="happyman.eric@gmail.com"
 
@@ -24,8 +24,8 @@ COPY conf/jesred* /etc/
 RUN apk add --no-cache \
     build-base \
     bash \
-    squid=3.5.27-r1 \
-    openssl=1.0.2t-r0 \
+    squid \
+    openssl \
     ca-certificates && \
     update-ca-certificates && \
     cat /etc/ssl/openssl.cnf.add >> /etc/ssl/openssl.cnf && \

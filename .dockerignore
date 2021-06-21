@@ -1,5 +1,5 @@
-cache/squid
-log/squid
+cache/
+log/
 cert/*.der
 cert/*.pem
 .DS_Store

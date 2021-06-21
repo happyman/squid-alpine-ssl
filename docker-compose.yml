@@ -1,7 +1,7 @@
 version: "3"
 services:
   squid-alpine-ssl:
-    image: happyman/squid-alpine-ssl:v42
+    image: happyman/squid-alpine-ssl:v43
     environment:
       - CN=squid.local
       - O=squid
@@ -11,7 +11,7 @@ services:
       - "3129:3128"
       - "4129:4128"
     volumes:
-      - ./log:/var/log/
+      - ./log:/var/log/squid
       - ./conf/squid.conf:/etc/squid/squid.conf
       - ./conf/jesred.conf:/etc/squid/jesred.conf
       - ./conf/jesred.rules:/etc/squid/jesred.rules
