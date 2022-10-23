@@ -1,7 +1,7 @@
 version: "3"
 services:
   squid-alpine-ssl:
-    image: happyman/squid-alpine-ssl:v43
+    image: happyman/squid-alpine-ssl:v55
     environment:
       - CN=squid.local
       - O=squid
@@ -18,5 +18,5 @@ services:
       - ./conf/jesred.acl:/etc/squid/jesred.acl
       - ./cache:/var/cache
       - ./cert:/etc/squid-cert
-    restart: always
+        restart: always
     container_name: sslbump
